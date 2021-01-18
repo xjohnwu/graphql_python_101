@@ -7,6 +7,8 @@ https://github.com/graphql-python/graphene
 3. Go through query examples https://docs.graphene-python.org/en/latest/quickstart/
     1. setup flask runner for starwars example
     2. play with custom ObjectType, Enums, Interfaces on GraphQL viewer
+    3. Mutations:
+
 
 ### Examples
 * https://analytics.iotexscan.io/
