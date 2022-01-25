@@ -36,6 +36,14 @@ class Query(graphene.ObjectType):
     person = graphene.Field(Person)
 
 
+class DummyMiddleware(object):
+    def resolve(self, next, root, info, **kwargs):
+        print("DummyMiddleware")
+        return next(root, info, **kwargs)
+
+
+dummy_middleware = DummyMiddleware()
+
 if __name__ == '__main__':
     from flask import Flask
     from flask_graphql import GraphQLView
@@ -47,5 +55,7 @@ if __name__ == '__main__':
         'graphql',
         schema=schema,
         graphiql=True,
+        middleware=[dummy_middleware],
+        get_context=lambda: {'context': "I'm a context"}
     ))
     app.run()
