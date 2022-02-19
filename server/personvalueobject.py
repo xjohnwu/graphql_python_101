@@ -25,7 +25,8 @@ class Query(ObjectType):
 
 schema = Schema(query=Query)
 
-if __name__ == "__main__":
+
+def test_schema():
     result = schema.execute('''
         {
             me { firstName lastName }

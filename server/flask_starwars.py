@@ -1,5 +1,5 @@
 import datetime
-
+from flask import url_for, redirect
 from graphene import ObjectType, String, Schema, Date, DateTime, Time, Field
 
 
@@ -87,4 +87,11 @@ if __name__ == '__main__':
         schema=schema,
         graphiql=True,
     ))
+
+
+    @app.route('/')
+    def index():
+        return redirect(url_for('graphql'))
+
+
     app.run()

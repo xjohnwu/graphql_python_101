@@ -1,4 +1,5 @@
 import graphene
+from flask import url_for, redirect
 
 
 class Person(graphene.ObjectType):
@@ -58,4 +59,11 @@ if __name__ == '__main__':
         middleware=[dummy_middleware],
         get_context=lambda: {'context': "I'm a context"}
     ))
+
+
+    @app.route('/')
+    def index():
+        return redirect(url_for('graphql'))
+
+
     app.run()
