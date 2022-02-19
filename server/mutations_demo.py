@@ -1,5 +1,5 @@
 import graphene
-from flask import url_for, redirect
+from flask import Flask, url_for, redirect
 
 
 class Person(graphene.ObjectType):
@@ -46,7 +46,6 @@ class DummyMiddleware(object):
 dummy_middleware = DummyMiddleware()
 
 if __name__ == '__main__':
-    from flask import Flask
     from flask_graphql import GraphQLView
 
     app = Flask(__name__)
