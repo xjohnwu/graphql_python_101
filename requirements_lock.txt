@@ -1,12 +1,17 @@
 aniso8601==9.0.1
+anyio==3.5.0
+ariadne==0.14.1
 attrs==21.4.0
 click==8.0.4
 Flask==2.0.3
 Flask-GraphQL==2.0.1
+Flask-SQLAlchemy==2.5.1
 graphene==3.0
 graphql-core==3.1.7
 graphql-relay==3.1.5
 graphql-server-core==1.2.0
+greenlet==1.1.2
+idna==3.3
 iniconfig==1.1.1
 itsdangerous==2.1.0
 Jinja2==3.0.3
@@ -19,5 +24,9 @@ pyparsing==3.0.7
 pytest==7.0.1
 Rx==1.6.1
 six==1.16.0
+sniffio==1.2.0
+SQLAlchemy==1.4.31
+starlette==0.17.1
 tomli==2.0.1
+typing_extensions==4.1.1
 Werkzeug==2.0.3
