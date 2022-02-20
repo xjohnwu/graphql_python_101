@@ -1,8 +1,3 @@
-schema {
-    query: Query
-    mutation: Mutation
-}
-
 type Todo {
     id: ID!
     description: String!
@@ -22,20 +17,19 @@ type TodosResult {
     todos: [Todo]
 }
 
-type Query {
-    todos: TodosResult!
-    todo(todoId: ID!): TodoResult!
-}
-
 type DeleteTodoResult {
     success: Boolean!
     errors: [String]
 }
 
-type Mutation {
+extend type Query {
+    todos: TodosResult!
+    todo(todoId: ID!): TodoResult!
+}
+
+extend type Mutation {
     createTodo(description: String!, dueDate: String!): TodoResult!
     deleteTodo(todoId: ID!): DeleteTodoResult!
     markDone(todoId: String!): TodoResult!
     updateDueDate(todoId: String, newDate: String!): TodoResult!
 }
-
