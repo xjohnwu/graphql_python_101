@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from ariadne import convert_kwargs_to_snake_case
+from ariadne import convert_kwargs_to_snake_case, ObjectType
 
-from api import db
-from api.models import Todo
+from .app import db
+from .models import Todo
 
 
 @convert_kwargs_to_snake_case
@@ -90,3 +90,10 @@ def resolve_update_due_date(obj, info, todo_id, new_date):
             "errors": [f"Todo matching id {todo_id} not found"]
         }
     return payload
+
+
+mutation = ObjectType("Mutation")
+mutation.set_field("createTodo", resolve_create_todo)
+mutation.set_field("markDone", resolve_mark_done)
+mutation.set_field("deleteTodo", resolve_delete_todo)
+mutation.set_field("updateDueDate", resolve_update_due_date)

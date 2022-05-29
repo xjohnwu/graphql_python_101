@@ -1,5 +1,5 @@
+from ariadne import convert_kwargs_to_snake_case, ObjectType
 from .models import Todo
-from ariadne import convert_kwargs_to_snake_case
 
 
 def resolve_todos(obj, info):
@@ -39,3 +39,8 @@ def resolve_todo(obj, info, todo_id):
         }
 
     return payload
+
+
+query = ObjectType("Query")
+query.set_field("todos", resolve_todos)
+query.set_field("todo", resolve_todo)
