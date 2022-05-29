@@ -5,7 +5,10 @@ from ariadne import convert_kwargs_to_snake_case, ObjectType
 from .app import db
 from .models import Todo
 
+mutation = ObjectType("Mutation")
 
+
+@mutation.field('createTodo')
 @convert_kwargs_to_snake_case
 def resolve_create_todo(obj, info, description, due_date):
     try:
@@ -29,6 +32,7 @@ def resolve_create_todo(obj, info, description, due_date):
     return payload
 
 
+@mutation.field('markDone')
 @convert_kwargs_to_snake_case
 def resolve_mark_done(obj, info, todo_id):
     try:
@@ -49,6 +53,7 @@ def resolve_mark_done(obj, info, todo_id):
     return payload
 
 
+@mutation.field('deleteTodo')
 @convert_kwargs_to_snake_case
 def resolve_delete_todo(obj, info, todo_id):
     try:
@@ -66,6 +71,7 @@ def resolve_delete_todo(obj, info, todo_id):
     return payload
 
 
+@mutation.field('updateDueDate')
 @convert_kwargs_to_snake_case
 def resolve_update_due_date(obj, info, todo_id, new_date):
     try:
@@ -90,10 +96,3 @@ def resolve_update_due_date(obj, info, todo_id, new_date):
             "errors": [f"Todo matching id {todo_id} not found"]
         }
     return payload
-
-
-mutation = ObjectType("Mutation")
-mutation.set_field("createTodo", resolve_create_todo)
-mutation.set_field("markDone", resolve_mark_done)
-mutation.set_field("deleteTodo", resolve_delete_todo)
-mutation.set_field("updateDueDate", resolve_update_due_date)

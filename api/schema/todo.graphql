@@ -25,6 +25,7 @@ type DeleteTodoResult {
 extend type Query {
     todos: TodosResult!
     todo(todoId: ID!): TodoResult!
+    todoError(todoId: ID!): TodoResult!
 }
 
 extend type Mutation {

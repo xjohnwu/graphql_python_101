@@ -1,7 +1,10 @@
 from ariadne import convert_kwargs_to_snake_case, ObjectType
 from .models import Todo
 
+query = ObjectType("Query")
 
+
+@query.field('todos')
 def resolve_todos(obj, info):
     """
 
@@ -23,16 +26,16 @@ def resolve_todos(obj, info):
     return payload
 
 
+@query.field('todo')
 @convert_kwargs_to_snake_case
 def resolve_todo(obj, info, todo_id):
-    try:
-        todo = Todo.query.get(todo_id)
+    todo = Todo.query.get(todo_id)
+    if todo is not None:
         payload = {
             "success": True,
             "todo": todo.to_dict()
         }
-
-    except AttributeError:  # todo not found
+    else:
         payload = {
             "success": False,
             "errors": [f"Todo item matching id {todo_id} not found"]
@@ -41,6 +44,7 @@ def resolve_todo(obj, info, todo_id):
     return payload
 
 
-query = ObjectType("Query")
-query.set_field("todos", resolve_todos)
-query.set_field("todo", resolve_todo)
+@query.field('todoError')
+@convert_kwargs_to_snake_case
+def resolve_todo(obj, info, todo_id):
+    raise Exception('Intended error')

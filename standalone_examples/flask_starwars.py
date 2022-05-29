@@ -1,3 +1,5 @@
+# Example from https://github.com/graphql-python/graphene
+
 import datetime
 from flask import url_for, redirect
 from graphene import ObjectType, String, Schema, Date, DateTime, Time, Field
