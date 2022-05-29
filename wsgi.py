@@ -1,3 +1,5 @@
+import logging
+
 from api import app
 from ariadne import load_schema_from_path, make_executable_schema, \
     graphql_sync, snake_case_fallback_resolvers, ObjectType
@@ -6,6 +8,8 @@ from flask import request, jsonify, redirect
 
 from api.mutations import resolve_create_todo, resolve_mark_done, resolve_delete_todo, resolve_update_due_date
 from api.queries import resolve_todos, resolve_todo
+
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(filename)s:%(funcName)s %(levelname)-7s %(message)s")
 
 query = ObjectType("Query")
 
@@ -37,6 +41,7 @@ def graphql_playground():
 @app.route("/graphql", methods=["POST"])
 def graphql_server():
     data = request.get_json()
+    logging.info(data)
 
     success, result = graphql_sync(
         schema,
@@ -50,4 +55,7 @@ def graphql_server():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    ####################
+    # FOR DEVELOPMENT
+    ####################
+    app.run(port=31111, debug=True)
