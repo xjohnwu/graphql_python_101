@@ -3,3 +3,4 @@ Flask-GraphQL
 graphene
 Werkzeug
 uWSGI
+uvicorn[standard]
