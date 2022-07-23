@@ -14,6 +14,7 @@ https://github.com/graphql-python/graphene
 
 * https://analytics.iotexscan.io/
 * Deploy Flask project to production: https://flask.palletsprojects.com/en/1.1.x/tutorial/deploy/
+* Chat App: https://nordicapis.com/create-a-chat-app-api-using-python-and-graphql/
 
 ## Error Handling
 
